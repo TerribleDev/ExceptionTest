@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace ExceptionTest.Controllers
@@ -10,21 +12,16 @@ namespace ExceptionTest.Controllers
 	{
 		public ActionResult Index()
 		{
+			throw new WebException("awesome", WebExceptionStatus.RequestCanceled);
 			return View();
 		}
-
-		public ActionResult About()
+		public ActionResult poop()
 		{
-			ViewBag.Message = "Your application description page.";
-
+			throw new HttpResponseException(HttpStatusCode.BadGateway);
 			return View();
 		}
 
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
 	}
+
+
 }
